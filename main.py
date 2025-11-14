@@ -14,7 +14,7 @@ def menu():
         elif user_input == "2":
             search()
         #elif user_input == "3":
-            # Checkout
+            #checkout()
         #elif user_input == "4":
              # Return
         #elif user_input == "5":
@@ -41,11 +41,31 @@ def viewing():
 # Search should be case-insensitive
 # Return a list of matching books
 def search():
-    search_item = input("Please enter a genre or author's name: ")
-    for books in library_books:
-        for key, value in books.items():
-            if key.lower() == "history" and search_item.lower() == "history":
-                print(f"{key[3]}: {value[3]}")
+    search_item = input("Please enter a genre or author name: ")
+    if search_item.lower() == "historical" or search_item.lower() == "harper lee":
+        print(library_books[1])
+    elif search_item.lower() == "dystopian" or search_item.lower() == "george orwell":
+        print(library_books[3])
+    elif search_item.lower() == "science fiction" or search_item.lower() == "raw bradbury":
+        print(library_books[6])
+    elif search_item.lower() == "fantasy":
+        print(library_books[0])
+        print(library_books[5])
+    elif search_item.lower() == "classic" or search_item.lower() == "f. scott fitzgerald":
+        print(library_books[2])
+    elif search_item.lower() == "coming-of-age" or search_item.lower() == "j.d. salinger":
+        print(library_books[7])
+    elif search_item.lower() == "romance" or search_item.lower() == "jane austen":
+        print(library_books[4])
+    elif search_item.lower() == "j.r.r. tolkien":
+        print(library_books[5])
+    elif search_item.lower() == "rick riordan":
+        print(library_books[0])
+    else:
+        search_item = ("Invalid input, please enter a genre or author name: ")
+
+#fantasy, romance, science fiction, dystopian
+
 
 """
 # -------- Level 3 --------
@@ -77,11 +97,23 @@ def overdue():
     if due_date == today-1 and book == checked out:
         print("Book overdue")
 
-
+"""
 # -------- Level 5 --------
 # TODO: Convert your data into a Book class with methods like checkout() and return_book()
 # TODO: Add a simple menu that allows the user to choose different options like view, search, checkout, return, etc.
 
+class Books:
+    def __init__(self, book_Id, title, author, genre, available, due_date, checkouts):
+        self.book_Id = book_Id
+        self.title = title
+        self.author = author
+        self.genre = genre
+        self.available = available
+        self.due_date = due_date
+        self.checkouts = checkouts
+    def features(self):
+        return {"Book ID: ", self.book_Id, "Title: ", self.title, "Author: ", self.author, "Genre: ", self.genre, "Available: ", self.available, "Due Date: ", self.due_date, "Checkouts: ", self.checkouts}
+    
 # -------- Optional Advanced Features --------
 # You can implement these to move into Tier 4:
 # - Add a new book (via input) to the catalog
@@ -89,7 +121,7 @@ def overdue():
 # - Partial title/author search
 # - Save/load catalog to file (CSV or JSON)
 # - Anything else you want to build on top of the system!
-"""
+
 if __name__ == "__main__":
     menu()
     pass
