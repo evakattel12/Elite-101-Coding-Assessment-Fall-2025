@@ -2,29 +2,52 @@ from library_books import library_books
 from datetime import datetime, timedelta
 
 # -------- Level 1 --------
-# TODO: Create a function to view all books that are currently available
-# Output should include book ID, title, and author
-"""For book in books:
-    Print books
-        Table? One sentence at a time?
-"""
-# Solve
+# TODO: Create a menu with choices.
+def menu():
+    print("Welcome to the library catalog!")
+    print("1. View Available Books\n 2. Search (Author or Genre)\n 3. Checkout a Book\n 4. Return\n 5. Overdue\n 6. Top 3 Most Checked Out Books\n 7. Exit")
+    catalog_in_use = True
+    while catalog_in_use == True:
+        user_input = input("Please enter a number (1-7): ")
+        if user_input == "1":
+            viewing()
+        elif user_input == "2":
+            search()
+        #elif user_input == "3":
+            # Checkout
+        #elif user_input == "4":
+             # Return
+        #elif user_input == "5":
+            # Overdue
+        #elif user_input == "6":
+            # View Top 3 most checked out books
+        elif user_input == "7":
+            print("Thank you for checking out the library catalog.")
+            catalog_in_use = False
+        else:
+            user_input = ("Invalid input, please enter a number (1-7): ")
+
 
 def viewing():
+    print("")
+    print("----Available Books----")
     for books in library_books:
-        print(f"ID: {books.id}\nAuthor: {books.author}\nTitle: {books.title}\n")
+        print("----------------")
+        for key, value in books.items():
+            print(f"{key}: {value}")
+    print("----------------")
 # -------- Level 2 --------
 # TODO: Create a function to search books by author OR genre
 # Search should be case-insensitive
 # Return a list of matching books
-user_ask = input("Enter author or genre name: ")
-for book in library_books:
-    if user_ask == "Fantasy":
-        print(book.title)
-    elif user_ask == "Rick Riordan":
-        print(book.title)
+def search():
+    search_item = input("Please enter a genre or author's name: ")
+    for books in library_books:
+        for key, value in books.items():
+            if key.lower() == "history" and search_item.lower() == "history":
+                print(f"{key[3]}: {value[3]}")
 
-
+"""
 # -------- Level 3 --------
 # TODO: Create a function to checkout a book by ID
 # If the book is available:
@@ -66,7 +89,7 @@ def overdue():
 # - Partial title/author search
 # - Save/load catalog to file (CSV or JSON)
 # - Anything else you want to build on top of the system!
-
+"""
 if __name__ == "__main__":
-    viewing()
+    menu()
     pass
